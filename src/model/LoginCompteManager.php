@@ -32,6 +32,7 @@ class LoginCompteManager extends Manager
         if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
             $_SESSION['flash']['danger'] = 'Votre pseudo n\'est pas valide (alphanumérique)';
             header('Location: /login');
+            die();
         } else {
             $username = htmlspecialchars($_POST['username']);
 
@@ -43,6 +44,7 @@ class LoginCompteManager extends Manager
             if ($user) {
                 $_SESSION['flash']['danger'] = 'Ce pseudo est déjà pris.';
                 header('Location: /login');
+                die();
             }
         }
     }
@@ -55,6 +57,7 @@ class LoginCompteManager extends Manager
         if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $_SESSION['flash']['danger'] = 'Votre email n\'est pas valide.';
             header('Location: /login');
+            die();
         } else {
             $email = $_POST['email'];
             $bdd = $this->dbConnect();
@@ -65,6 +68,7 @@ class LoginCompteManager extends Manager
             if ($user) {
                 $_SESSION['flash']['danger'] = 'Cet email est déjà utilisé pour un autre compte.';
                 header('Location: /login');
+                die();
             }
         }
     }
@@ -77,10 +81,12 @@ class LoginCompteManager extends Manager
         if (empty($_POST['password']) && $_POST['password'] != $_POST['password_confirm']) {
             $_SESSION['flash']['danger'] = 'vous devez rentrer les mêmes mot de passe';
             header('Location: /login');
+            die();
         }
         if (empty($_POST['password']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['password'])) {
             $_SESSION['flash']['danger'] = 'Votre password n\'est pas valide (alphanumérique)';
             header('Location: /login');
+            die();
         }
     }
 

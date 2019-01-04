@@ -9,7 +9,7 @@ class FunctionComponent
         if (isset($param) && ($param != '')) {
             return $param;
         } else {
-            $_SESSION['flash']['danger'] = 'Le champ '.print_r($param).' est vide.';
+            $_SESSION['flash']['danger'] = 'Le champ '.$param.' est vide.';
             header('Location: /admin');
             die;
         }
