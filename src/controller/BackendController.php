@@ -26,11 +26,13 @@ class BackendController
         if (!isset($_SESSION['auth'])) {
             $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
             header('Location: /login');
+            die();
         }
         if (isset($_SESSION['auth'])) {
             if ($_SESSION['auth']->status != 1) {
                 $_SESSION['flash']['danger'] = 'Vous n\'avez pas le droit d\'accéder à cette page';
                 header('Location: /user');
+                die();
             }
         }
     }
