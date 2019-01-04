@@ -78,7 +78,7 @@ class FrontendController
                 header('Location: /login');
             } else {
                 $_SESSION['auth'] = $user;
-                if ($_SESSION['auth']->status = 1) {
+                if ($_SESSION['auth']->status == 1) {
                     header('Location: /admin');
                 } else {
                     header('Location: /user');
